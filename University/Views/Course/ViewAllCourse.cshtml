@@ -1,0 +1,59 @@
+﻿@model CourseProfessor
+<div class="dash-content">
+    <div class="overview">
+        <div class="title">
+            <i class="uil uil-tachometer-fast-alt"></i>
+            <span class="text">All Course</span>
+        </div>
+    </div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td class="table-light">id</td>
+                    <td class="table-light">Name</td>
+                    <td class="table-light">ProfessorID</td>
+                    <td class="table-light">ProfessorName</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model._Courses)
+                    {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.ProfessorId</td>
+                        @foreach (var item2 in Model._professor)
+                        {
+                            if (item.ProfessorId == item2.Id)
+                            {
+                                <td>@item2.Name</td>
+                                break;
+                            }
+                        }
+                        <td></td>
+                        <td>
+                            <a class="btn btn-success" asp-action="UpdateCourse" asp-route-id="@item.Id" role="button">
+                                <span class="material-symbols-outlined">
+                                    UpdateCourse
+                                </span>
+                            </a>
+                            <a class="btn btn-danger " asp-action="DeleteCourse" asp-route-id="@item.Id" role="button">
+                                <span class="material-symbols-outlined">
+                                    DeleteCourse
+                                </span>
+                            </a>
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+
+</div>
